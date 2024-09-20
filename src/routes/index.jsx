@@ -5,17 +5,18 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { ErrorBoundary, LazyLoad, Page, ProtectedRoute } from "../components";
 import PublicRoute from "../components/PublicRoute";
 import AppLayout from "../layouts";
-import { PATH_HOME, PATH_LOGIN } from "../routes/paths";
+import { PATH_HOME, PATH_LOGIN, PATH_FORGET_PASSWORD } from "../routes/paths";
 import { routes } from "./routes";
 
 const LoginPage = lazy(() => import("../pages/login"));
+const ForgetPassPage = lazy(() => import("../pages/forgetPass"));
 
 export default function AppRoutes() {
   return (
     <Suspense fallback={<LazyLoad />}>
       <ErrorBoundary>
         <Routes>
-          <Route path="/">
+          <Route path={"/"}>
             <Route path="/" element={<AppLayout />}>
               {routes.map(({ path, element, children, name }) => {
                 return children && children.length > 0 ? (
@@ -41,7 +42,7 @@ export default function AppRoutes() {
               })}
             </Route>
           </Route>
-          <Route path="login" element={<PublicRoute />}>
+          <Route path={"login"} element={<PublicRoute />}>
             <Route
               path={PATH_LOGIN}
               element={
@@ -51,7 +52,17 @@ export default function AppRoutes() {
               }
             />
           </Route>
-          <Route path="*" element={<h1>PATH ERR</h1>} />
+          <Route path={"forget-password"} element={<ForgetPassPage />}>
+            <Route
+              path={PATH_FORGET_PASSWORD}
+              element={
+                <Page title="Quên mật khẩu">
+                  <ForgetPassPage />
+                </Page>
+              }
+            />
+          </Route>
+          <Route path={"*"} element={<h1>PATH ERR</h1>} />
         </Routes>
       </ErrorBoundary>
     </Suspense>

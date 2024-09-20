@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { PATH_HOME } from "../../routes/paths";
 import { routes } from "../../routes/routes";
+import MainLogo from "../../assets/MainLogo.png";
 
 // import { getItemLocalStorage } from "../../../utils/storage";
 import { FC, useCallback, useEffect, useRef, useState } from "react";
@@ -43,29 +44,20 @@ export const Sidebar = forwardRef(() => {
       <div
         className="h-full"
       >
-        <ConfigProvider
-          theme={{
-            components : {
-              Menu : {
-                darkItemSelectedBg : "#F9423A",
-                horizontalItemHoverColor : "#F9423A",
-                itemSelectedColor	: "#F9423A",
-                horizontalItemSelectedColor : "#F9423A",
-                
-                },
-            },
-            token: {
-              colorPrimaryBorder : "#F9423A",
-            }
-          }}
-        >
+        <ConfigProvider>
+          <div className="flex justify-start items-center text-black h-[120px] font-bold">
+            <img
+              src={MainLogo} 
+              alt="logo" 
+              className="w-[120px] h-[120px]"
+            />
+            <h1 className="-ml-5 text-xl">EvoSchedule</h1>
+          </div>
           <Menu
-            theme="dark"
-            mode="horizontal"
             defaultOpenKeys={[PATH_HOME]}
             selectedKeys={[location.pathname, location.pathname.slice(1)]}
             items={renderedSidebarMenu}
-            className="!justify-center gap-10"
+            className="!justify-center gap-[30px]"
           />
         </ConfigProvider>
       </div>

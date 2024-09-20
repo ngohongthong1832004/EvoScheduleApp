@@ -6,6 +6,7 @@ import slide2 from "../../assets/slide2.png"
 import slide3 from "../../assets/slide3.png"
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
+import { PATH_FORGET_PASSWORD } from "../../routes/paths";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -22,8 +23,8 @@ export const LoginModule = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 1,
-    slidesToScroll: 1
-    
+    slidesToScroll: 1,
+    autoplay: true,
   };
 
   return (
@@ -101,7 +102,7 @@ export const LoginModule = () => {
         <div className="w-[80%] mt-auto flex justify-between items-center">
           <span className="block">
             <Link
-              to={"/forget-pass"}
+              to={PATH_FORGET_PASSWORD}
             >Quên mật khẩu</Link>
           </span>
           <span className="block text-[8px]">@Copy rights {new Date().getFullYear()}</span>
